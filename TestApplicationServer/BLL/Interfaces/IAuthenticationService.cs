@@ -1,10 +1,8 @@
-﻿
-
-using Core.Models;
+﻿using Core.Models;
 
 namespace BLL.Interfaces
 {
-    public interface IAuthenticationServer
+    public interface IAuthenticationService
     {
         public Task<bool> RegisterAsync(RegisterUserModel registerUser);
 
