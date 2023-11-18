@@ -31,7 +31,10 @@ namespace TestApplicationServer.Controllers
                     return NotFound($"Can't find tests for user {userId}");
                 }
 
-                return Ok(userTests);
+                var userTestsViews = map(userTests);
+
+
+                return Ok(userTestsViews);
             }
             catch(ArgumentException aex)
             {
@@ -47,7 +50,14 @@ namespace TestApplicationServer.Controllers
 
         private List<UserTestViewModel> map(List<UserTest> userTests)
         {
+            List<UserTestViewModel> res = new List<UserTestViewModel>();
 
+            foreach(var userTest in userTests)
+            {
+                res.Add(map(userTest));
+            }
+
+            return res;
         }
 
         private UserTestViewModel map(UserTest userTest)
