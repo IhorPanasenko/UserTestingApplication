@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace Core.Models
 {
@@ -9,7 +10,7 @@ namespace Core.Models
 
         [Required]
         public string TestName { get; set; } = string.Empty;
-
+        public List<Question> Questions { get; set; } = new List<Question>();
         public List<UserTest> UserTests { get; set; } = new List<UserTest>();
     }
 }
