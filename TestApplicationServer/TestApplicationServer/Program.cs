@@ -81,7 +81,6 @@ namespace TestApplicationServer
                 });
             });
 
-
             builder.Services.AddScoped<IUserTestRepository, UserTestRepository>();
             builder.Services.AddScoped<IUserRepository, UserRepository>();
             builder.Services.AddScoped<IQuestionRepository, QuestionRepository>();
@@ -89,7 +88,7 @@ namespace TestApplicationServer
 
             builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
             builder.Services.AddScoped<IUserTestService, UserTestService>();
-
+            builder.Services.AddScoped<IQuestionService, QuestionService>();
 
             builder.Services.AddCors(options =>
             {
