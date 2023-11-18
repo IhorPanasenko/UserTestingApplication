@@ -11,7 +11,7 @@ namespace DAL
         public DbSet<UserTest> UserTests { get; set; }
         public DbSet<QuestionType> QuestionTypes { get; set; }
         public DbSet<Question> Questions { get; set; }
-        public DbSet<QuestionOption> QuestionIption {  get; set; }
+        public DbSet<QuestionOption> QuestionOption {  get; set; }
         public DbSet<UserAnswer> UserAnswers { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
