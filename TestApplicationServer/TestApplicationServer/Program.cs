@@ -2,6 +2,8 @@ using BLL.Interfaces;
 using BLL.Services;
 using Core.Models;
 using DAL;
+using DAL.Interfaces;
+using DAL.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -79,7 +81,12 @@ namespace TestApplicationServer
                 });
             });
 
+
+            builder.Services.AddScoped<IUserTestRepository, UserTestRepository>();
+            builder.Services.AddScoped<IUserRepository, UserRepository>();
+
             builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
+            builder.Services.AddScoped<IUserTestService, UserTestService>();
 
 
             builder.Services.AddCors(options =>
