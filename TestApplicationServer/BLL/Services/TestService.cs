@@ -14,11 +14,15 @@ namespace BLL.Services
     {
         private readonly ILogger<TestService> logger;
         private readonly ITestRepository testRepository;
+        private readonly IOptionRepository optionRepository;
+        private readonly IQuestionRepository questionRepository;
 
-        public TestService(ILogger<TestService> logger, ITestRepository testRepository)
+        public TestService(ILogger<TestService> logger, ITestRepository testRepository, IOptionRepository optionRepository, IQuestionRepository questionRepository)
         {
             this.logger = logger;
             this.testRepository = testRepository;
+            this.optionRepository = optionRepository;
+            this.questionRepository = questionRepository;
         }
 
         public async Task<Test?> GetById(int testId)
@@ -32,6 +36,28 @@ namespace BLL.Services
                     throw new ArgumentException($"No Test with id {testId}");
                 }
 
+                var questions = await questionRepository.GetbyTest(test.TestId);
+
+                if (questions is null || questions.Count == 0)
+                {
+                    logger.LogInformation($"No questions for test: {test.TestName} was created, or error happend");
+                    return test;
+                }
+
+                foreach(var question in questions)
+                {
+                    var options = await optionRepository.GetByQuestion(question.QuestionId);
+
+                    if(options is null)
+                    {
+                        logger.LogInformation($"For question {question.QuestionId}\t\"{question.QuestionText}\" no options created");
+                        continue;
+                    }
+
+                    question.Options = options;
+                }
+
+                test.Questions = questions;
                 return test;
             }
             catch(Exception ex)
