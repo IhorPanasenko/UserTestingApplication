@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BLL.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 
 namespace TestApplicationServer.Controllers
 {
@@ -7,15 +8,31 @@ namespace TestApplicationServer.Controllers
     public class TestController : ControllerBase
     {
         private readonly ILogger<TestController> logger;
+        private readonly ITestService testService;
 
-        public TestController(ILogger<TestController> logger)
+        public TestController(ILogger<TestController> logger, ITestService testService)
         {
             this.logger = logger;
+            this.testService = testService;
         }
 
-        public Task<IActionResult> GetById(int testId)
+        public async Task<IActionResult> GetById(int testId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var test = await testService.GetById(testId);
+                return Ok(test);
+            }
+            catch(ArgumentException aex)
+            {
+                logger.LogError(aex.Message);
+                return NotFound(aex.Message);
+            }
+            catch(Exception ex)
+            {
+                logger.LogError(ex.Message);
+                return BadRequest(ex.Message);
+            }
         }
     }
 }
