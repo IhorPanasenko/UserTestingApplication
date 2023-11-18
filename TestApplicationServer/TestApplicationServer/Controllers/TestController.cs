@@ -16,6 +16,7 @@ namespace TestApplicationServer.Controllers
             this.testService = testService;
         }
 
+        [HttpGet("GetById")]
         public async Task<IActionResult> GetById(int testId)
         {
             try
