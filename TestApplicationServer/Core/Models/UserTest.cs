@@ -8,14 +8,24 @@ namespace Core.Models
         [Key]
         public int UserTestId { get; set; }
 
-        [ForeignKey("User")]
-        public int UserId { get; set; }
-
-        [ForeignKey("Test")]
-        public int TestId { get; set; }
-
         public bool IsCompleted { get; set; }
 
         public int? Mark { get; set; }
+
+        [ForeignKey("UserId")]
+        [Required]
+        public string UserId { get; set; } = string.Empty;
+        public AppUser? AppUser { get; set; }
+
+
+        [ForeignKey("TestId")]
+        [Required]
+        public int TestId { get; set; }
+
+        public Test? Test { get; set; }
+
+       
+
+        public List<UserAnswer> UserAnswers { get; set; } = new List<UserAnswer>();
     }
 }

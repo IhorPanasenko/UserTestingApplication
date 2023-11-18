@@ -11,5 +11,8 @@ namespace Core.Models
         [Required]
         [EnumDataType(typeof(EnumQuestionType))]
         public EnumQuestionType questionTypeName { get; set; }
+
+        public List<Question> Questions { get; set; } = new List<Question>();
+
     }
 }

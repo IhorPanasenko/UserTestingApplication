@@ -9,5 +9,7 @@ namespace Core.Models
 
         [Required]
         public string TestName { get; set; } = string.Empty;
+
+        public List<UserTest> UserTests { get; set; } = new List<UserTest>();
     }
 }
