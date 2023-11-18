@@ -8,7 +8,7 @@ namespace Core.Enums
 {
     public enum EnumQuestionType
     {
-        SingleAnswer,
+        SingleAnswer = 1,
         MultipleAnswers,
         OpenQuestion
     }
