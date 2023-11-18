@@ -21,7 +21,7 @@ namespace DAL.Repositories
         {
             try
             {
-                var userTests =  await applicationDbContext.UserTests.ToListAsync();
+                var userTests =  await applicationDbContext.UserTests.Where(ut=> ut.AppUserId == userId).ToListAsync();
                 return userTests;
             }
             catch (Exception ex)
