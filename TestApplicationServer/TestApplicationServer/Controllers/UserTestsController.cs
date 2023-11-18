@@ -12,11 +12,13 @@ namespace TestApplicationServer.Controllers
     {
         private readonly ILogger<UserTestsController> logger;
         private readonly IUserTestService userTestService;
+        private readonly IQuestionService questionService;
 
-        public UserTestsController(ILogger<UserTestsController> logger, IUserTestService userTestService)
+        public UserTestsController(ILogger<UserTestsController> logger, IUserTestService userTestService, IQuestionService questionService)
         {
             this.logger = logger;
             this.userTestService = userTestService;
+            this.questionService = questionService;
         }
 
         [HttpGet("GetUserTests")]
@@ -33,15 +35,20 @@ namespace TestApplicationServer.Controllers
 
                 var userTestsViews = map(userTests);
 
+                foreach( var view in userTestsViews)
+                {
+                    var questionNumber =  await questionService.CountTestQuestions(view.TestId);
+                    view.NumberOfQuestions = questionNumber;
+                }
 
                 return Ok(userTestsViews);
             }
-            catch(ArgumentException aex)
+            catch (ArgumentException aex)
             {
                 logger.LogError(aex.Message);
-                return NotFound($"No User with given Id: {userId}");
+                return NotFound(aex.Message);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 logger.LogError(ex.Message);
                 return BadRequest(ex.Message);
