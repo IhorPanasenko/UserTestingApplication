@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging;
 
 namespace DAL.Repositories
 {
-    internal class OptionRepository : IOptionRepository
+    public class OptionRepository : IOptionRepository
     {
         private readonly ILogger<OptionRepository> logger;
         private readonly ApplicationDbContext dbContext;
