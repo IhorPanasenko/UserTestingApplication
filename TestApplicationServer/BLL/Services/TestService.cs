@@ -26,6 +26,12 @@ namespace BLL.Services
             try
             {
                 var test = await testRepository.GetById(testId);
+
+                if (test is null)
+                {
+                    throw new ArgumentException($"No Test with id {testId}");
+                }
+
                 return test;
             }
             catch(Exception ex)
