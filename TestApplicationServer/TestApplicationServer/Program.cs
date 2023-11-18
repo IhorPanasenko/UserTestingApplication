@@ -20,7 +20,7 @@ namespace TestApplicationServer
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                      builder.Configuration.GetConnectionString("DefaultConnection"),
-                        b => b.MigrationsAssembly("WebUrlShortener")
+                        b => b.MigrationsAssembly("TestApplicationServer")
                         ));
 
             builder.Services.AddIdentity<AppUser, IdentityRole>()
@@ -53,7 +53,7 @@ namespace TestApplicationServer
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen(option =>
             {
-                option.SwaggerDoc("v1", new OpenApiInfo { Title = "UrlShortener", Version = "v1" });
+                option.SwaggerDoc("v1", new OpenApiInfo { Title = "UserTest", Version = "v1" });
                 option.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
                     In = ParameterLocation.Header,
