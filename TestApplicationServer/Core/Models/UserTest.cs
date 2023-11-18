@@ -12,9 +12,9 @@ namespace Core.Models
 
         public int? Mark { get; set; }
 
-        [ForeignKey("UserId")]
+        [ForeignKey("AppUserId")]
         [Required]
-        public string UserId { get; set; } = string.Empty;
+        public string AppUserId { get; set; } = string.Empty;
         public AppUser? AppUser { get; set; }
 
 
