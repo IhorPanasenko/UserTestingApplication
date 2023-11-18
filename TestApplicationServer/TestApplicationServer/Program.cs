@@ -89,6 +89,7 @@ namespace TestApplicationServer
             builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
             builder.Services.AddScoped<IUserTestService, UserTestService>();
             builder.Services.AddScoped<IQuestionService, QuestionService>();
+            builder.Services.AddScoped<ITestService, TestService>();
 
             builder.Services.AddCors(options =>
             {
