@@ -30,12 +30,20 @@ namespace DAL.Repositories
             }
         }
 
-        public async Task<bool> CreateUserTest(UserTest userTest)
+        public async Task<bool> PassUserTest(UserTest userTest)
         {
             try
             {
-                dbContext.UserTests.Update(userTest);
-                await dbContext.SaveChangesAsync();
+                var existingUserTest = dbContext.UserTests.Find(userTest.UserTestId);
+
+                if (existingUserTest != null)
+                {   
+                    existingUserTest.IsCompleted = userTest.IsCompleted;
+                    existingUserTest.Mark = userTest.Mark;
+
+                    await dbContext.SaveChangesAsync();
+                }
+
                 return true;
             }
             catch(Exception e)
