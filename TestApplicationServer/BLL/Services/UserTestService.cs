@@ -133,12 +133,13 @@ namespace BLL.Services
                         while(currentQuestion.QuestionId == answersByUser[i].QuestionId)
                         {
                             isCorrect = options.Find(o => o.OptionId == answersByUser[i].UserAnswerOptionId)!.IsCorrect;
+                            answersByUser[i].IsCorrect = isCorrect;
 
                             if (!isCorrect)
                             {
                                 allCorrect = false;
                             }
-                           
+
                             i++;
                         }
 
@@ -163,6 +164,7 @@ namespace BLL.Services
                         break;
                     default:
                         throw new ArgumentException("Unknown question type");
+                        
                 }
                 
             }
