@@ -2,7 +2,7 @@
 
 namespace TestApplicationServer.ViewModels
 {
-    public class UserTestViewModel
+    public class UserTestInfoViewModel
     {
         public int UserTestId { get; set; }
 
@@ -12,11 +12,8 @@ namespace TestApplicationServer.ViewModels
 
         public int TestId { get; set; }
 
-        public string TestTitle { get; set; } = string.Empty;
+        public Test? Test { get; set; }
 
         public int? NumberOfQuestions { get; set; }
-
-        public List<UserAnswerViewModel> UserAnswers { get; set; } = new List<UserAnswerViewModel>();
-
     }
 }
