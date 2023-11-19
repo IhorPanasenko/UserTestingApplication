@@ -24,7 +24,7 @@ namespace DAL.Repositories
         {
             try
             {
-                dbContext.Add(userAnswer);
+                dbContext.UserAnswers.Add(userAnswer);
                 await dbContext.SaveChangesAsync();
                 return true;
             }
@@ -39,7 +39,7 @@ namespace DAL.Repositories
         {
             try
             {
-                dbContext.AddRange(userAnswers);
+                dbContext.UserAnswers.AddRange(userAnswers);
                 await dbContext.SaveChangesAsync();
                 return true;
             }
