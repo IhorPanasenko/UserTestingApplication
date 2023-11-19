@@ -55,7 +55,7 @@ namespace TestApplicationServer.Controllers
             }
         }
 
-        [HttpPost("PassTheTest")]
+        [HttpPut("PassTheTest")]
         public async Task<IActionResult> PassTheTest(PassingUserTestViewModel passingUserTest)
         {
             var userTest = map(passingUserTest);
@@ -76,13 +76,12 @@ namespace TestApplicationServer.Controllers
                 logger.LogError(e.Message);
                 return BadRequest(e.Message);
             }
-
-            return Ok();
         }
 
         private UserTest map(PassingUserTestViewModel passingUserTest)
         {
             UserTest userTest = new UserTest();
+            userTest.UserTestId = passingUserTest.UserTestId;
             userTest.TestId = passingUserTest.TestId;
             userTest.AppUserId = passingUserTest.AppUserId;
             userTest.IsCompleted = true;
