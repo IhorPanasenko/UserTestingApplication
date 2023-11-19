@@ -88,11 +88,13 @@ namespace TestApplicationServer
             builder.Services.AddScoped<IOptionRepository, OptionRepository>();
             builder.Services.AddScoped<IQuestionTypeRepository, QuestionTypeRepository>(); 
             builder.Services.AddScoped<IUserAnswerRepository, UserAnswerRepository>();
+            builder.Services.AddScoped<IUserAnswerRepository, UserAnswerRepository>();
 
             builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
             builder.Services.AddScoped<IUserTestService, UserTestService>();
             builder.Services.AddScoped<IQuestionService, QuestionService>();
             builder.Services.AddScoped<ITestService, TestService>();
+            builder.Services.AddScoped<IUserAnswersService, UserAnswerService>();
 
             builder.Services.AddCors(options =>
             {
