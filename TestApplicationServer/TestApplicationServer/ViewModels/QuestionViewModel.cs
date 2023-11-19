@@ -1,4 +1,6 @@
-﻿namespace TestApplicationServer.ViewModels
+﻿using Core.Enums;
+
+namespace TestApplicationServer.ViewModels
 {
     public class QuestionViewModel
     {
@@ -12,7 +14,7 @@
 
         public int QuestionTypeId { get; set; }
 
-        public QuestionTypeViewModel? QuestionType { get; set; }
+        public EnumQuestionType QuestionType { get; set; }
 
         public List<QuestionOptionViewModel> Options { get; set; } = new List<QuestionOptionViewModel>();
     }
