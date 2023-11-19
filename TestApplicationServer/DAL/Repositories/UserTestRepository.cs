@@ -34,7 +34,7 @@ namespace DAL.Repositories
         {
             try
             {
-                dbContext.UserTests.Add(userTest);
+                dbContext.UserTests.Update(userTest);
                 await dbContext.SaveChangesAsync();
                 return true;
             }
@@ -42,6 +42,19 @@ namespace DAL.Repositories
             {
                 logger.LogError($"Error happend while trying to add new UserTest: {e.Message}");
                 return false;
+            }
+        }
+
+        public async Task<UserTest?> GetById(int id)
+        {
+            try
+            {
+                return await dbContext.UserTests.FindAsync(id);
+            }
+            catch (Exception e)
+            {
+                logger.LogError(e.Message);
+                return null;
             }
         }
     }
