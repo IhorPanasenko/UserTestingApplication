@@ -74,7 +74,7 @@ namespace TestApplicationServer.Controllers
                 TestId = userTest.TestId,
                 IsCompleted = userTest.IsCompleted,
                 Mark = userTest.Mark,
-                Test = userTest.Test
+                TestTitle = userTest.Test.TestName
             };
         }
 

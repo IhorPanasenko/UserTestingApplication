@@ -12,7 +12,7 @@ namespace TestApplicationServer.ViewModels
 
         public int TestId { get; set; }
 
-        public Test? Test { get; set; }
+        public string TestTitle { get; set; } = string.Empty;
 
         public int? NumberOfQuestions { get; set; }
     }
