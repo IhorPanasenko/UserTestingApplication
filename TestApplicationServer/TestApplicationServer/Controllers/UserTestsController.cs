@@ -1,7 +1,8 @@
 ﻿using BLL.Interfaces;
 using Core.Models;
 using Microsoft.AspNetCore.Mvc;
-using TestApplicationServer.ViewModels;
+using TestApplicationServer.ViewModels.PassingTest;
+using TestApplicationServer.ViewModels.TestInfo;
 
 namespace TestApplicationServer.Controllers
 {
@@ -55,10 +56,53 @@ namespace TestApplicationServer.Controllers
         }
 
         [HttpPost("PassTheTest")]
-        public async Task<IActionResult> PassTheTest()
+        public async Task<IActionResult> PassTheTest(PassingUserTestViewModel passingUserTest)
         {
+            var userTest = map(passingUserTest);
+
+            try
+            {
+
+            }
+            catch(Exception e)
+            {
+                logger.LogError(e.Message);
+                return BadRequest(e.Message);
+            }
 
             return Ok();
+        }
+
+        private UserTest map(PassingUserTestViewModel passingUserTest)
+        {
+            UserTest userTest = new UserTest();
+            userTest.TestId = passingUserTest.TestId;
+            userTest.AppUserId = passingUserTest.AppUserId;
+            userTest.IsCompleted = true;
+            userTest.UserAnswers = map(passingUserTest.UserAnswers);
+            return userTest;
+        }
+
+        private List<UserAnswer> map(List<CreatingUserAnswerViewModel> creatingUserAnswers)
+        {
+            List<UserAnswer> userAnswers = new List<UserAnswer>();
+
+            foreach(var createAnswer in creatingUserAnswers)
+            {
+                userAnswers.Add(map(createAnswer));
+            }
+
+            return userAnswers;
+        }
+
+        private UserAnswer map(CreatingUserAnswerViewModel createAnswer)
+        {
+            UserAnswer userAnswer = new UserAnswer();
+            userAnswer.UserAnswerText = createAnswer.UserAnswerText;
+            userAnswer.UserTestId = createAnswer.UserTestId;
+            userAnswer.UserAnswerOptionId = createAnswer.UserAnswerOptionId;
+            userAnswer.QuestionId = createAnswer.QuestionId;
+            return userAnswer;
         }
 
         private List<UserTestInfoViewModel> map(List<UserTest> userTests)
