@@ -1,8 +1,4 @@
-﻿using Core.Models;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-
-namespace TestApplicationServer.ViewModels.UnpassedTest
+﻿namespace TestApplicationServer.ViewModels.UnpassedTest
 {
     public class QuestionOptionViewModel
     {
