@@ -2,19 +2,14 @@
 using Core.Models;
 using DAL.Interfaces;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BLL.Services
 {
     public class UserTestService: IUserTestService
     {
-        public readonly IUserTestRepository userTestRepository;
-        public readonly IUserRepository userRepository;
-        public readonly ILogger<UserTestService> logger;
+        private readonly IUserTestRepository userTestRepository;
+        private readonly IUserRepository userRepository;
+        private readonly ILogger<UserTestService> logger;
 
         public UserTestService(ILogger<UserTestService> logger, IUserTestRepository userTestRepository, IUserRepository userRepository)
         {
