@@ -38,13 +38,13 @@ namespace BLL.Services
             this.userAnswerRepository = userAnswerRepository;
         }
 
-        public async Task<bool> CreateUserTest(UserTest userTest)
+        public async Task<bool> PassUserTest(UserTest userTest)
         {
             try
             {
                 var isTestAssigned = await userTestRepository.GetById(userTest.UserTestId);
 
-                if(isTestAssigned == null || isTestAssigned.AppUserId == userTest.AppUserId)
+                if(isTestAssigned == null || isTestAssigned.AppUserId != userTest.AppUserId)
                 {
                     throw new ArgumentException("You are trying to pass unexisting test assignment");
                 }
@@ -57,7 +57,17 @@ namespace BLL.Services
                 int mark = await computeMark(userTest);
                 userTest.Mark = mark;
                 var userAnswers = userTest.UserAnswers;
-                var res = await userAnswerRepository.CreateManyUserAnswer(userAnswers);
+                userTest.UserAnswers = new List<UserAnswer>();
+
+                var res = await userTestRepository.PassUserTest(userTest);
+
+                if (res == false)
+                {
+                    logger.LogError("Can't save user test");
+                    return res;
+                }
+
+                res = await userAnswerRepository.CreateManyUserAnswer(userAnswers);
 
                 if(res == false)
                 {
@@ -65,13 +75,8 @@ namespace BLL.Services
                     return res;
                 }
 
-                res = await userTestRepository.CreateUserTest(userTest);
-
-                if(res == false)
-                {
-                    logger.LogError("Can't save user test");
-                }
-
+                userTest.UserAnswers = new List<UserAnswer>();
+                
                 return res;
             }
             catch (Exception ex)
@@ -135,6 +140,8 @@ namespace BLL.Services
                            
                             i++;
                         }
+
+                        i--;
 
                         if (allCorrect)
                         {
