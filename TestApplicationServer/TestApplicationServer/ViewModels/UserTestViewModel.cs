@@ -1,4 +1,6 @@
-﻿namespace TestApplicationServer.ViewModels
+﻿using Core.Models;
+
+namespace TestApplicationServer.ViewModels
 {
     public class UserTestViewModel
     {
@@ -13,6 +15,8 @@
         public string TestTitle { get; set; } = string.Empty;
 
         public int? NumberOfQuestions { get; set; }
+
+        public List<UserAnswerViewModel> UserAnswers { get; set; } = new List<UserAnswerViewModel>();
 
     }
 }
