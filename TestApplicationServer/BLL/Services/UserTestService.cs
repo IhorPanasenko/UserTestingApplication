@@ -42,6 +42,18 @@ namespace BLL.Services
         {
             try
             {
+                var isTestAssigned = await userTestRepository.GetById(userTest.UserTestId);
+
+                if(isTestAssigned == null || isTestAssigned.AppUserId == userTest.AppUserId)
+                {
+                    throw new ArgumentException("You are trying to pass unexisting test assignment");
+                }
+
+                if (isTestAssigned.IsCompleted)
+                {
+                    throw new ArgumentException("You are trying to pass akready completed test");
+                }
+
                 int mark = await computeMark(userTest);
                 userTest.Mark = mark;
                 var userAnswers = userTest.UserAnswers;
