@@ -13,5 +13,7 @@
         public string TestTitle { get; set; } = string.Empty;
 
         public int? NumberOfQuestions { get; set; }
+
+        public int MaxMark { get; set; }
     }
 }
