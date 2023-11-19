@@ -46,7 +46,7 @@ namespace DAL.Repositories
             }
         }
 
-        public async Task<List<UserAnswer>?> GetForTest(int userTestId)
+        public async Task<List<UserAnswer>?> GetByUserTest(int userTestId)
         {
             try
             {

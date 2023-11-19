@@ -4,7 +4,7 @@ namespace DAL.Interfaces
 {
     public interface IUserAnswerRepository
     {
-        public Task<List<UserAnswer>?> GetForTest(int userTestId);
+        public Task<List<UserAnswer>?> GetByUserTest(int userTestId);
 
         public Task<bool> CreateUserAnswer(UserAnswer userAnswer);
 
