@@ -4,6 +4,6 @@ namespace DAL.Interfaces
 {
     public interface IQuestionTypeRepository
     {
-        public Task<QuestionType> GetById(int id);
+        public Task<QuestionType?> GetById(int id);
     }
 }
