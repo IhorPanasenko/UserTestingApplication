@@ -54,9 +54,9 @@ namespace TestApplicationServer.Controllers
             }
         }
 
-        private List<UserTestViewModel> map(List<UserTest> userTests)
+        private List<UserTestInfoViewModel> map(List<UserTest> userTests)
         {
-            List<UserTestViewModel> res = new List<UserTestViewModel>();
+            List<UserTestInfoViewModel> res = new List<UserTestInfoViewModel>();
 
             foreach(var userTest in userTests)
             {
@@ -66,15 +66,15 @@ namespace TestApplicationServer.Controllers
             return res;
         }
 
-        private UserTestViewModel map(UserTest userTest)
+        private UserTestInfoViewModel map(UserTest userTest)
         {
-            return new UserTestViewModel
+            return new UserTestInfoViewModel
             {
                 UserTestId = userTest.UserTestId,
                 TestId = userTest.TestId,
                 IsCompleted = userTest.IsCompleted,
                 Mark = userTest.Mark,
-                TestTitle = userTest.Test!.TestName,
+                Test = userTest.Test
             };
         }
 
