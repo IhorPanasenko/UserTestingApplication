@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
-namespace TestApplicationServer.ViewModels
+namespace TestApplicationServer.ViewModels.UnpassedTest
 {
     public class QuestionOptionViewModel
     {
