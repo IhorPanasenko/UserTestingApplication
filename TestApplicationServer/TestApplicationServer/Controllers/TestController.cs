@@ -1,5 +1,7 @@
 ﻿using BLL.Interfaces;
+using Core.Models;
 using Microsoft.AspNetCore.Mvc;
+using TestApplicationServer.ViewModels;
 
 namespace TestApplicationServer.Controllers
 {
@@ -22,7 +24,15 @@ namespace TestApplicationServer.Controllers
             try
             {
                 var test = await testService.GetById(testId);
-                return Ok(test);
+
+                if(test == null)
+                {
+                    return BadRequest($"Info about test: {testId} is null");
+                }
+
+                var testViewModel = map(test);
+
+                return Ok(testViewModel);
             }
             catch(ArgumentException aex)
             {
@@ -34,6 +44,62 @@ namespace TestApplicationServer.Controllers
                 logger.LogError(ex.Message);
                 return BadRequest(ex.Message);
             }
+        }
+
+        private TestUnpassedViewModel map(Test test)
+        {
+            TestUnpassedViewModel viewModel = new TestUnpassedViewModel();
+            viewModel.TestId = test.TestId;
+            viewModel.TestName = test.TestName;
+            viewModel.Questions = map(test.Questions);
+
+            return viewModel;
+        }
+
+        private List<QuestionViewModel> map(List<Question> questions)
+        {
+            List<QuestionViewModel> questionViewModels = new List<QuestionViewModel>();
+
+            foreach (var question in questions) 
+            {
+                questionViewModels.Add(map(question));
+            }
+
+            return questionViewModels;
+        }
+
+        private QuestionViewModel map(Question question)
+        {
+            QuestionViewModel questionViewModel = new QuestionViewModel();
+            questionViewModel.QuestionText = question.QuestionText;
+            questionViewModel.QuestionId = question.QuestionId;
+            questionViewModel.Points = question.Points;
+            questionViewModel.QuestionTypeId = question.QuestionTypeId;
+            questionViewModel.QuestionType = question.QuestionType!.QuestionTypeName;
+            questionViewModel.Options = map(question.Options);
+            return questionViewModel;
+        }
+
+        private List<QuestionOptionViewModel> map(List<QuestionOption> options)
+        {
+            List<QuestionOptionViewModel> optionsViewModel = new List<QuestionOptionViewModel>();
+
+            foreach(var option in options)
+            {
+                optionsViewModel.Add(map(option));
+            }
+
+            return optionsViewModel;
+        }
+
+        private QuestionOptionViewModel map(QuestionOption option)
+        {
+            QuestionOptionViewModel questionOptionViewModel = new QuestionOptionViewModel();
+            questionOptionViewModel.OptionText = option.OptionText;
+            questionOptionViewModel.QuestionId = option.QuestionId;
+            questionOptionViewModel.OptionId = option.OptionId;
+            questionOptionViewModel.IsCorrect = option.IsCorrect;
+            return questionOptionViewModel;
         }
     }
 }
