@@ -23,6 +23,34 @@ namespace BLL.Services
             this.testRepository = testRepository;
         }
 
+        public async Task<int?> CountTestMaxMark(int testId)
+        {
+            try
+            {
+                var test = testRepository.GetById(testId);
+
+                if (test is null)
+                {
+                    throw new ArgumentException($"No test with Id: {testId}");
+                }
+
+                var questions = await questionRepository.GetbyTest(testId);
+
+                if(questions is null)
+                {
+                    throw new ArgumentException($"No Questions for test {testId}");
+                }
+
+                var maxMark = questions.Sum(q => q.Points);
+                return maxMark;
+            }
+            catch (Exception ex)
+            {
+                logger.LogError($"Error in data access layer: {ex.Message}");
+                return null;
+            }
+        }
+
         public async Task<int?> CountTestQuestions(int testId)
         {
             try
