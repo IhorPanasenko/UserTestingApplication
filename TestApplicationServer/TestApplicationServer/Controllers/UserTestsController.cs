@@ -62,7 +62,14 @@ namespace TestApplicationServer.Controllers
 
             try
             {
+                var res = await userTestService.CreateUserTest(userTest);
 
+                if (res is false)
+                {
+                    return BadRequest("Can't create new UserTest");
+                }
+
+                return Ok("User's answers were saved");
             }
             catch(Exception e)
             {
