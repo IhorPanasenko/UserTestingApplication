@@ -10,6 +10,8 @@ namespace Core.Models
 
         public string UserAnswerText { get; set; } = string.Empty;
 
+        public bool IsCorrect { get; set; }
+
         [ForeignKey("UserTestId")]
         [Required]
         public int UserTestId { get; set; }
