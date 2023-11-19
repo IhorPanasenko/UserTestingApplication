@@ -7,5 +7,7 @@ namespace BLL.Interfaces
         public Task<List<UserTest>?> GetUserTests(string userId);
 
         public Task<bool> PassUserTest(UserTest userTest);
+
+        public Task<UserTest?> GetById(int userTestId);
     }
 }

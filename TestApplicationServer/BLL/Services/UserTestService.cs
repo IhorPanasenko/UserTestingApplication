@@ -203,5 +203,18 @@ namespace BLL.Services
                 return null;
             }
         }
+
+        public async Task<UserTest?> GetById(int userTestId)
+        {
+            try
+            {
+                return await userTestRepository.GetById(userTestId);
+            }
+            catch(Exception ex)
+            {
+                logger.LogError($"Error in data access layer: {ex.Message}");
+                return null;
+            }
+        }
     }
 }
