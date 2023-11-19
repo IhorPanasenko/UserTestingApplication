@@ -1,6 +1,4 @@
-﻿using Core.Models;
-
-namespace TestApplicationServer.ViewModels
+﻿namespace TestApplicationServer.ViewModels
 {
     public class UserTestInfoViewModel
     {

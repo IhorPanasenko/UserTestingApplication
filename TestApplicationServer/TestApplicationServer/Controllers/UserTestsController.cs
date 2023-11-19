@@ -54,6 +54,13 @@ namespace TestApplicationServer.Controllers
             }
         }
 
+        [HttpPost("PassTheTest")]
+        public async Task<IActionResult> PassTheTest()
+        {
+
+            return Ok();
+        }
+
         private List<UserTestInfoViewModel> map(List<UserTest> userTests)
         {
             List<UserTestInfoViewModel> res = new List<UserTestInfoViewModel>();

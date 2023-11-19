@@ -1,7 +1,7 @@
 ﻿using BLL.Interfaces;
 using Core.Models;
 using Microsoft.AspNetCore.Mvc;
-using TestApplicationServer.ViewModels;
+using TestApplicationServer.ViewModels.Authenctication;
 
 namespace TestApplicationServer.Controllers
 {
