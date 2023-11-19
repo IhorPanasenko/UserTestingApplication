@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace TestApplicationServer.ViewModels
+namespace TestApplicationServer.ViewModels.PassingTest
 {
     public class PassingUserTestViewModel
     {
@@ -11,6 +11,6 @@ namespace TestApplicationServer.ViewModels
         public int TestId { get; set; }
 
         [Required]
-        public List<UserAnswerViewModel> UserAnswers { get; set; } = new List<UserAnswerViewModel>();
+        public List<CreatingUserAnswerViewModel> UserAnswers { get; set; } = new List<CreatingUserAnswerViewModel>();
     }
 }
