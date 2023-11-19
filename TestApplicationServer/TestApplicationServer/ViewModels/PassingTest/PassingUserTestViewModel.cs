@@ -5,6 +5,9 @@ namespace TestApplicationServer.ViewModels.PassingTest
     public class PassingUserTestViewModel
     {
         [Required]
+        public int UserTestId { get; set; } 
+
+        [Required]
         public string AppUserId { get; set; } = string.Empty;
 
         [Required]
