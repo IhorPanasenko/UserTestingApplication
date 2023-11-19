@@ -1,5 +1,6 @@
 ﻿using Core.Models;
 using DAL.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace DAL.Repositories
@@ -42,6 +43,19 @@ namespace DAL.Repositories
             {
                 logger.LogError($"Error while inserting userAnswer to db: {ex.Message}");
                 return false;
+            }
+        }
+
+        public async Task<List<UserAnswer>?> GetForTest(int userTestId)
+        {
+            try
+            {
+                return await dbContext.UserAnswers.Where(ua => ua.UserTestId == userTestId).ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex.Message);
+                return null;
             }
         }
     }
