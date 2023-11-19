@@ -62,11 +62,11 @@ namespace TestApplicationServer.Controllers
 
             try
             {
-                var res = await userTestService.CreateUserTest(userTest);
+                var res = await userTestService.PassUserTest(userTest);
 
                 if (res is false)
                 {
-                    return BadRequest("Can't create new UserTest");
+                    return BadRequest($"Can't pass test for user {passingUserTest.AppUserId}");
                 }
 
                 return Ok("User's answers were saved");
