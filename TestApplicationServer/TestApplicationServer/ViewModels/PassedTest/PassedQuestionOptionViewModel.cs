@@ -11,5 +11,6 @@
         public int QuestionId { get; set; }
 
         public bool IsChoosen { get; set; }
+        public string EnteredText { get; internal set; } = string.Empty;
     }
 }
