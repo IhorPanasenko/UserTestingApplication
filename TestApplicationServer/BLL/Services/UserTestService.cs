@@ -122,6 +122,7 @@ namespace BLL.Services
 
                         if (isCorrect)
                         {
+                            answersByUser[i].IsCorrect = true;
                             mark += currentQuestion.Points;
                         }
 
@@ -145,6 +146,7 @@ namespace BLL.Services
 
                         if (allCorrect)
                         {
+                            answersByUser[i].IsCorrect = true;
                             mark += currentQuestion.Points;
                         }
                         
@@ -154,6 +156,7 @@ namespace BLL.Services
 
                         if (answersByUser[i].UserAnswerText == correctOption.OptionText)
                         {
+                            answersByUser[i].IsCorrect = true;
                             mark += currentQuestion.Points;
                         }
 
@@ -164,6 +167,7 @@ namespace BLL.Services
                 
             }
 
+            userTest.UserAnswers = answersByUser;
             return mark;
         }
 
