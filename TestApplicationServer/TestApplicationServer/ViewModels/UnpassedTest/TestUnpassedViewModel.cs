@@ -1,4 +1,4 @@
-﻿namespace TestApplicationServer.ViewModels
+﻿namespace TestApplicationServer.ViewModels.UnpassedTest
 {
     public class TestUnpassedViewModel
     {
