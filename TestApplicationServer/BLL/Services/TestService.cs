@@ -16,13 +16,15 @@ namespace BLL.Services
         private readonly ITestRepository testRepository;
         private readonly IOptionRepository optionRepository;
         private readonly IQuestionRepository questionRepository;
+        private readonly IQuestionTypeRepository questionTypeRepository;
 
-        public TestService(ILogger<TestService> logger, ITestRepository testRepository, IOptionRepository optionRepository, IQuestionRepository questionRepository)
+        public TestService(ILogger<TestService> logger, ITestRepository testRepository, IOptionRepository optionRepository, IQuestionRepository questionRepository, IQuestionTypeRepository questionTypeRepository)
         {
             this.logger = logger;
             this.testRepository = testRepository;
             this.optionRepository = optionRepository;
             this.questionRepository = questionRepository;
+            this.questionTypeRepository = questionTypeRepository;
         }
 
         public async Task<Test?> GetById(int testId)
@@ -55,6 +57,9 @@ namespace BLL.Services
                     }
 
                     question.Options = options;
+
+                    var questionType = await questionTypeRepository.GetById(question.QuestionTypeId);
+                    question.QuestionType = questionType;
                 }
 
                 test.Questions = questions;
