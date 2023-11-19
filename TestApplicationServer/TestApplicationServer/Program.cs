@@ -86,7 +86,7 @@ namespace TestApplicationServer
             builder.Services.AddScoped<IQuestionRepository, QuestionRepository>();
             builder.Services.AddScoped<ITestRepository, TestRepository>();
             builder.Services.AddScoped<IOptionRepository, OptionRepository>();
-            builder.Services.AddScoped<IQuestionTypeRepository, IQuestionTypeRepository>(); 
+            builder.Services.AddScoped<IQuestionTypeRepository, QuestionTypeRepository>(); 
 
             builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
             builder.Services.AddScoped<IUserTestService, UserTestService>();

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Repositories
 {
-    internal class QuestionTypeRepository : IQuestionTypeRepository
+    public class QuestionTypeRepository : IQuestionTypeRepository
     {
         private readonly ApplicationDbContext dbContext;
         private ILogger<QuestionTypeRepository> logger;
