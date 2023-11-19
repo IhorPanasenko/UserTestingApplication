@@ -16,7 +16,7 @@ namespace TestApplicationServer.ViewModels.PassedTest
 
         public EnumQuestionType QuestionType { get; set; }
 
-        public bool isCorrect { get; set; }
+        public bool IsCorrectAnswered { get; set; }
 
         public List<PassedQuestionOptionViewModel> Options { get; set; } = new List<PassedQuestionOptionViewModel>();
     }
