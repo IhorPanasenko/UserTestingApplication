@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace TestApplicationServer.ViewModels
+namespace TestApplicationServer.ViewModels.Authenctication
 {
     public class RegisterViewModel
     {
