@@ -30,6 +30,8 @@ function ViewCompletedTest() {
 
   let i = 1;
 
+
+  console.log(testDetails);
   return (
     <>
       <Header />
