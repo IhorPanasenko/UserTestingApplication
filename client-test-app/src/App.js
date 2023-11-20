@@ -15,8 +15,8 @@ function App() {
           <Route path="/" Component={Login} />
           <Route path="/UserTests" Component={UserTests} />
           <Route path="/About" Component={About} />
-          <Route path="/ViewCompletedTest" Component={ViewCompletedTest} />
-          <Route path="/PassTheTest" Component={PassTheTest} />
+          <Route path="/ViewCompletedTest/:userTestId" Component={ViewCompletedTest} />
+          <Route path="/PassTheTest/:testId" Component={PassTheTest} />
         </Routes>
       </Router>
     </div>
