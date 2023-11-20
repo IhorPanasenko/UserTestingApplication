@@ -1,5 +1,6 @@
 ﻿using BLL.Interfaces;
 using Core.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TestApplicationServer.ViewModels.UnpassedTest;
 
@@ -19,11 +20,11 @@ namespace TestApplicationServer.Controllers
         }
 
         [HttpGet("GetById")]
-        public async Task<IActionResult> GetById(int testId)
+        public async Task<IActionResult> GetById(int testId, string userId)
         {
             try
             {
-                var test = await testService.GetById(testId);
+                var test = await testService.GetById(testId, userId);
 
                 if(test == null)
                 {
