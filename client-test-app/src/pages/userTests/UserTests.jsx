@@ -5,6 +5,7 @@ import { jwtDecode } from "jwt-decode";
 import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
 import "./UserTests.css";
+import { useNavigate } from "react-router-dom";
 
 const GET_USER_TESTS_URL =
   "https://localhost:7256/api/UserTests/GetUserTests?userId=";
@@ -15,6 +16,7 @@ function UserTests() {
   const [userId, setUserId] = useState("");
   const [isAuthorized, setisAuthorized] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
 
   const getUserTests = async (currentId) => {
     try {
@@ -44,6 +46,14 @@ function UserTests() {
 
     setIsLoading(false);
   }, []);
+
+  const viewResultsClick = () =>{
+    navigate("/ViewCompletedTest")
+  }
+
+  const startTheTestClick = () => {
+    navigate("/PassTheTest")
+  }
 
   return (
     <>
@@ -92,7 +102,10 @@ function UserTests() {
                               : "N/A"}
                           </td>
                           <td className="text-center">
-                            <button className="btn btn-primary p-4 pt-2 pb-2 m-2 border border-3 border-dark rounded fs-3">
+                            <button className="btn btn-primary p-4 pt-2 pb-2 m-2 border border-3 border-dark rounded fs-3"
+                            onClick={viewResultsClick}
+                            >
+                                
                               View Results
                             </button>
                           </td>
@@ -109,7 +122,9 @@ function UserTests() {
                               : "N/A"}
                           </td>
                           <td className="text-center">
-                            <button className="btn btn-success p-4 pt-2 pb-2 m-2 border border-3 border-dark rounded fs-3">
+                            <button className="btn btn-success p-4 pt-2 pb-2 m-2 border border-3 border-dark rounded fs-3"
+                            onClick={startTheTestClick}
+                            >
                               Start The Test
                             </button>
                           </td>
