@@ -16,7 +16,7 @@ function App() {
           <Route path="/UserTests" Component={UserTests} />
           <Route path="/About" Component={About} />
           <Route path="/ViewCompletedTest/:userTestId" Component={ViewCompletedTest} />
-          <Route path="/PassTheTest/:testId" Component={PassTheTest} />
+          <Route path="/PassTheTest/:testId/:userTestId" Component={PassTheTest} />
         </Routes>
       </Router>
     </div>

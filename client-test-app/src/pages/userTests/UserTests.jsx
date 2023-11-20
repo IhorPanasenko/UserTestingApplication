@@ -53,10 +53,10 @@ function UserTests() {
     navigate(`/ViewCompletedTest/${userTestId}`)
   }
 
-  const startTheTestClick = (testId) => {
+  const startTheTestClick = (testId, userTestId) => {
     console.log(testId)
     //alert(testId)
-    navigate(`/PassTheTest/${testId}`)
+    navigate(`/PassTheTest/${testId}/${userTestId}`)
   }
 
   return (
@@ -109,7 +109,6 @@ function UserTests() {
                             <button className="btn btn-primary p-4 pt-2 pb-2 m-2 border border-3 border-dark rounded fs-3"
                             onClick={()=>{viewResultsClick(test.userTestId)}}
                             >
-                                
                               View Results
                             </button>
                           </td>
@@ -127,7 +126,7 @@ function UserTests() {
                           </td>
                           <td className="text-center">
                             <button className="btn btn-success p-4 pt-2 pb-2 m-2 border border-3 border-dark rounded fs-3"
-                            onClick={()=>{startTheTestClick(test.testId)}}
+                            onClick={()=>{startTheTestClick(test.testId, test.userTestId)}}
                             >
                               Start The Test
                             </button>
