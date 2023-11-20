@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Form, Button, Container } from 'react-bootstrap';
+import { Form, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
 const URL_LOGIN = 'https://localhost:7256/api/Authentication/Login';
@@ -41,7 +41,7 @@ function LoginForm() {
             console.log('API response:', response.data);
             localStorage.setItem("token", response.data);
             alert("Congratulation! Successfull login");
-            navigate("ShortUrlsTable");
+            navigate("UserTests");
 
         } catch (error) {
             console.error('API error:', error);
