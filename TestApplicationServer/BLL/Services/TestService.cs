@@ -17,17 +17,25 @@ namespace BLL.Services
         private readonly IOptionRepository optionRepository;
         private readonly IQuestionRepository questionRepository;
         private readonly IQuestionTypeRepository questionTypeRepository;
+        private readonly IUserTestRepository userTestRepository;
 
-        public TestService(ILogger<TestService> logger, ITestRepository testRepository, IOptionRepository optionRepository, IQuestionRepository questionRepository, IQuestionTypeRepository questionTypeRepository)
+        public TestService(
+            ILogger<TestService> logger, 
+            ITestRepository testRepository, 
+            IOptionRepository optionRepository, 
+            IQuestionRepository questionRepository, 
+            IQuestionTypeRepository questionTypeRepository, 
+            IUserTestRepository userTestRepository)
         {
             this.logger = logger;
             this.testRepository = testRepository;
             this.optionRepository = optionRepository;
             this.questionRepository = questionRepository;
             this.questionTypeRepository = questionTypeRepository;
+            this.userTestRepository = userTestRepository;
         }
 
-        public async Task<Test?> GetById(int testId)
+        public async Task<Test?> GetById(int testId, string userId)
         {
             try
             {
@@ -36,6 +44,19 @@ namespace BLL.Services
                 if (test is null)
                 {
                     throw new ArgumentException($"No Test with id {testId}");
+                }
+
+                var userTests = await userTestRepository.GetUserTests(userId);
+
+                if (userTests == null) {
+                    throw new ArgumentException($"User {userId} haven't go any assigned tests");
+                }
+
+                var assignedTest = userTests.FirstOrDefault(ut=> ut.TestId == testId);
+
+                if (assignedTest is null)
+                {
+                    throw new ArgumentException($"Test {testId} is not assugned for user {userId}");
                 }
 
                 var questions = await questionRepository.GetbyTest(test.TestId);
