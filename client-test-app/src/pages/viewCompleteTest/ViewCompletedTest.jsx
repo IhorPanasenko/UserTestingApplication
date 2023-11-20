@@ -13,9 +13,16 @@ function ViewCompletedTest() {
   const [testDetails, setTestDetails] = useState(null);
 
   const fetchData = async () => {
+    var token = localStorage.getItem("token")
+    console.log(token);
     try {
       const response = await axios.get(
-        `${GET_COMPLETED_USER_TEST_URL}${userTestId}`
+        `${GET_COMPLETED_USER_TEST_URL}${userTestId}`,
+        {
+            headers:{
+                'Authorization': 'Bearer ' + token,
+            }
+        }
       );
       setTestDetails(response.data);
     } catch (error) {
