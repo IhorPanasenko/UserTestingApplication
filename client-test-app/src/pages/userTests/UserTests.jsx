@@ -47,12 +47,16 @@ function UserTests() {
     setIsLoading(false);
   }, []);
 
-  const viewResultsClick = () =>{
-    navigate("/ViewCompletedTest")
+  const viewResultsClick = (userTestId) =>{
+    console.log(userTestId)
+   //alert(userTestId)
+    navigate(`/ViewCompletedTest/${userTestId}`)
   }
 
-  const startTheTestClick = () => {
-    navigate("/PassTheTest")
+  const startTheTestClick = (testId) => {
+    console.log(testId)
+    //alert(testId)
+    navigate(`/PassTheTest/${testId}`)
   }
 
   return (
@@ -68,7 +72,7 @@ function UserTests() {
             <h1 className="text-center mb-5"> Your Tests</h1>
             {error && <p>Error: {error}</p>}
             {isLoading && !error && <p>Loading...</p>}
-            {tests?.length == 0 && !error && (
+            {tests?.length === 0 && !error && (
               <div className="Container text-center">
                 <h1>There are no tests available for you</h1>
               </div>
@@ -103,7 +107,7 @@ function UserTests() {
                           </td>
                           <td className="text-center">
                             <button className="btn btn-primary p-4 pt-2 pb-2 m-2 border border-3 border-dark rounded fs-3"
-                            onClick={viewResultsClick}
+                            onClick={()=>{viewResultsClick(test.userTestId)}}
                             >
                                 
                               View Results
@@ -123,7 +127,7 @@ function UserTests() {
                           </td>
                           <td className="text-center">
                             <button className="btn btn-success p-4 pt-2 pb-2 m-2 border border-3 border-dark rounded fs-3"
-                            onClick={startTheTestClick}
+                            onClick={()=>{startTheTestClick(test.testId)}}
                             >
                               Start The Test
                             </button>
