@@ -2,9 +2,11 @@ import React from 'react'
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import "./Header.css"
 
 function Header() {
     return (
+        <header className='pageHeader'>
         <Navbar className='fs-2' bg="dark" data-bs-theme="dark">
             <Container>
                 <Navbar.Brand className='fs-2 m-auto' href="#home">TestsApp</Navbar.Brand>
@@ -15,6 +17,7 @@ function Header() {
                 </Nav>
             </Container>
         </Navbar>
+        </header>
     )
 }
 
