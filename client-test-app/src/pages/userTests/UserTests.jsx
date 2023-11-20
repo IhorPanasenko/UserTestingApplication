@@ -20,7 +20,13 @@ function UserTests() {
 
   const getUserTests = async (currentId) => {
     try {
-      const response = await axios.get(`${GET_USER_TESTS_URL}${currentId}`);
+      const token = localStorage.getItem("token");
+      console.log(token);
+      const response = await axios.get(`${GET_USER_TESTS_URL}${currentId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       setTests(response.data);
       setError("");
       setIsLoading(false);
@@ -47,17 +53,15 @@ function UserTests() {
     setIsLoading(false);
   }, []);
 
-  const viewResultsClick = (userTestId) =>{
-    console.log(userTestId)
-   //alert(userTestId)
-    navigate(`/ViewCompletedTest/${userTestId}`)
-  }
+  const viewResultsClick = (userTestId) => {
+    console.log(userTestId);
+    navigate(`/ViewCompletedTest/${userTestId}`);
+  };
 
   const startTheTestClick = (testId, userTestId) => {
-    console.log(testId)
-    //alert(testId)
-    navigate(`/PassTheTest/${testId}/${userTestId}`)
-  }
+    console.log(testId);
+    navigate(`/PassTheTest/${testId}/${userTestId}`);
+  };
 
   return (
     <>
@@ -95,7 +99,10 @@ function UserTests() {
                     .reverse()
                     .map((test) =>
                       test.isCompleted ? (
-                        <tr className="text-center table-info" key={test.userTestId}>
+                        <tr
+                          className="text-center table-info"
+                          key={test.userTestId}
+                        >
                           <td>{test.testTitle}</td>
                           <td>{test.numberOfQuestions}</td>
                           <td>{test.maxMark}</td>
@@ -106,15 +113,21 @@ function UserTests() {
                               : "N/A"}
                           </td>
                           <td className="text-center">
-                            <button className="btn btn-primary p-4 pt-2 pb-2 m-2 border border-3 border-dark rounded fs-3"
-                            onClick={()=>{viewResultsClick(test.userTestId)}}
+                            <button
+                              className="btn btn-primary p-4 pt-2 pb-2 m-2 border border-3 border-dark rounded fs-3"
+                              onClick={() => {
+                                viewResultsClick(test.userTestId);
+                              }}
                             >
                               View Results
                             </button>
                           </td>
                         </tr>
                       ) : (
-                        <tr className="text-center table-warning" key={test.userTestId}>
+                        <tr
+                          className="text-center table-warning"
+                          key={test.userTestId}
+                        >
                           <td>{test.testTitle}</td>
                           <td>{test.numberOfQuestions}</td>
                           <td>{test.maxMark}</td>
@@ -125,8 +138,11 @@ function UserTests() {
                               : "N/A"}
                           </td>
                           <td className="text-center">
-                            <button className="btn btn-success p-4 pt-2 pb-2 m-2 border border-3 border-dark rounded fs-3"
-                            onClick={()=>{startTheTestClick(test.testId, test.userTestId)}}
+                            <button
+                              className="btn btn-success p-4 pt-2 pb-2 m-2 border border-3 border-dark rounded fs-3"
+                              onClick={() => {
+                                startTheTestClick(test.testId, test.userTestId);
+                              }}
                             >
                               Start The Test
                             </button>
