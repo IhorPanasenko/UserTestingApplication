@@ -86,7 +86,7 @@ namespace TestApplicationServer
             builder.Services.AddScoped<IQuestionRepository, QuestionRepository>();
             builder.Services.AddScoped<ITestRepository, TestRepository>();
             builder.Services.AddScoped<IOptionRepository, OptionRepository>();
-            builder.Services.AddScoped<IQuestionTypeRepository, QuestionTypeRepository>(); 
+            builder.Services.AddScoped<IQuestionTypeRepository, QuestionTypeRepository>();
             builder.Services.AddScoped<IUserAnswerRepository, UserAnswerRepository>();
             builder.Services.AddScoped<IUserAnswerRepository, UserAnswerRepository>();
 
@@ -96,10 +96,16 @@ namespace TestApplicationServer
             builder.Services.AddScoped<ITestService, TestService>();
             builder.Services.AddScoped<IUserAnswersService, UserAnswerService>();
             builder.Services.AddScoped<IQuestionTypeService, QuestionTypeService>();
-            builder.Services.AddScoped<IOptionService,OptionService>();
+            builder.Services.AddScoped<IOptionService, OptionService>();
 
             builder.Services.AddCors(options =>
             {
+                options.AddPolicy("AllowReactApp",
+                    builder => builder
+               .WithOrigins("http://localhost:3000") // Add the URL of your React app
+               .AllowAnyMethod()
+               .AllowAnyHeader()
+               .AllowCredentials());
                 options.AddPolicy("AllowAllHeaders",
                     builder =>
                     {
@@ -119,12 +125,11 @@ namespace TestApplicationServer
             }
 
             app.UseHttpsRedirection();
-
-            app.UseAuthorization();
-
-
-            app.MapControllers();
+            app.UseCors("AllowReactApp");
             app.UseCors("AllowAllHeaders");
+            app.UseAuthorization();
+            app.MapControllers();
+           
 
             app.Run();
         }
