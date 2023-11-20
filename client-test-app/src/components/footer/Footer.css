@@ -1,0 +1,17 @@
+body{
+    min-height: 100%;
+  }
+  
+  .footer {
+      font-size: 30px;
+      padding: 10px;
+      height: auto;
+      margin-top: 50px;
+      bottom: 0;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+    }

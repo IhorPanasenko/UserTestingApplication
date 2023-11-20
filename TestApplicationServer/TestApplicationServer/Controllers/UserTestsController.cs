@@ -3,6 +3,7 @@ using Core.Enums;
 using Core.Models;
 using DAL.Interfaces;
 using DAL.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TestApplicationServer.ViewModels.PassedTest;
 using TestApplicationServer.ViewModels.PassingTest;
@@ -97,7 +98,7 @@ namespace TestApplicationServer.Controllers
                 }
 
                 userTest.UserAnswers = userAnswers;
-                var test = await testService.GetById(userTest.TestId);
+                var test = await testService.GetById(userTest.TestId, userTest.AppUserId);
 
                 if (test is null)
                 {
