@@ -10,8 +10,8 @@ function Header() {
                 <Navbar.Brand className='fs-2 m-auto' href="#home">TestsApp</Navbar.Brand>
                 <Nav className="m-auto">
                     <Nav.Link className='m-2 p-4 pb-0 pt-0' href="/">Login</Nav.Link>
-                    <Nav.Link className='m-2 p-4 pb-0 pt-0' href="#">My tests</Nav.Link>
-                    <Nav.Link className='m-2 p-4 pb-0 pt-0' href="#">About</Nav.Link>
+                    <Nav.Link className='m-2 p-4 pb-0 pt-0' href="/UserTests">My tests</Nav.Link>
+                    <Nav.Link className='m-2 p-4 pb-0 pt-0' href="/About">About</Nav.Link>
                 </Nav>
             </Container>
         </Navbar>
