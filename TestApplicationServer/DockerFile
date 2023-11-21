@@ -6,13 +6,13 @@ COPY . .
 # Restore dependencies
 RUN dotnet restore "./Core/Core.csproj" --disable-parallel
 RUN dotnet restore "./DAL/DAL.csproj" --disable-parallel
-RUN dotnet restore "./BLL/Bll.csproj" --disable-parallel
+RUN dotnet restore "./BLL/BLL.csproj" --disable-parallel
 RUN dotnet restore "./TestApplicationServer/TestApplicationServer.csproj" --disable-parallel
 
 # Publish the application
 RUN dotnet publish "./Core/Core.csproj" -c release -o /core --no-restore
 RUN dotnet publish "./DAL/DAL.csproj" -c release -o /dal --no-restore
-RUN dotnet publish "./BLL/Bll.csproj" -c release -o /bll --no-restore
+RUN dotnet publish "./BLL/BLL.csproj" -c release -o /bll --no-restore
 RUN dotnet publish "./TestApplicationServer/TestApplicationServer.csproj" -c release -o /app --no-restore
 
 # Stage 2: Create the runtime image
