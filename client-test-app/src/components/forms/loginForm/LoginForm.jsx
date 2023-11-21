@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Form, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
-const URL_LOGIN = 'https://localhost:7256/api/Authentication/Login';
+const URL_LOGIN = 'http://localhost:5058/api/Authentication/Login';
 
 function LoginForm() {
     const [login, setLogin] = useState('');
