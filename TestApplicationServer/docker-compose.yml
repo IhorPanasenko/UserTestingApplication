@@ -6,7 +6,7 @@ networks:
 
 services:
   testAppDb:
-    container_name:   app-db3
+    container_name:   app-db4
     image: mcr.microsoft.com/mssql/server:2022-latest
     ports:
       - 8002:1433
@@ -16,7 +16,7 @@ services:
     networks:
       - userTestAppBack
   testapplicationserver:
-    container_name: user-test-app-container2
+    container_name: user-test-app-container3
     image: ${DOCKER_REGISTRY-}testapplicationserver
     build:
       context: .
