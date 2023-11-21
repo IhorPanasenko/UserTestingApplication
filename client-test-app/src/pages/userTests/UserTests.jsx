@@ -8,7 +8,7 @@ import "./UserTests.css";
 import { useNavigate } from "react-router-dom";
 
 const GET_USER_TESTS_URL =
-  "https://localhost:7256/api/UserTests/GetUserTests?userId=";
+  "http://localhost:5058/api/UserTests/GetUserTests?userId=";
 
 function UserTests() {
   const [tests, setTests] = useState([]);

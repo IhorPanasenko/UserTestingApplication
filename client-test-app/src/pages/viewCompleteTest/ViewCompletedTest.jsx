@@ -6,7 +6,7 @@ import axios from "axios";
 import { Form } from "react-bootstrap";
 
 const GET_COMPLETED_USER_TEST_URL =
-  "https://localhost:7256/api/UserTests/GetCompletedTest?userTestId=";
+  "http://localhost:5058/api/UserTests/GetCompletedTest?userTestId=";
 
 function ViewCompletedTest() {
   const { userTestId } = useParams();

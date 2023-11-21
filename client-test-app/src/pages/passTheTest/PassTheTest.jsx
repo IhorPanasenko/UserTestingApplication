@@ -7,8 +7,8 @@ import Footer from "../../components/footer/Footer";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 
-const GET_TEST_BY_ID_URL = "https://localhost:7256/api/Test/GetById?testId=";
-const PASS_THE_TEST_URL = "https://localhost:7256/api/UserTests/PassTheTest";
+const GET_TEST_BY_ID_URL = "http://localhost:5058/api/Test/GetById?testId=";
+const PASS_THE_TEST_URL = "http://localhost:5058/api/UserTests/PassTheTest";
 
 function PassTheTest() {
   const { testId, userTestId } = useParams();
