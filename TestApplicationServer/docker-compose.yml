@@ -1,8 +1,33 @@
 version: '3.4'
 
+networks:
+  userTestAppBack:
+
+
 services:
+  testAppDb:
+    container_name:   app-db3
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    ports:
+      - 8002:1433
+    environment: 
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=Passwrd123456
+    networks:
+      - userTestAppBack
   testapplicationserver:
+    container_name: user-test-app-container2
     image: ${DOCKER_REGISTRY-}testapplicationserver
     build:
       context: .
       dockerfile: TestApplicationServer/Dockerfile
+    ports:
+       - 8001:80
+    depends_on:
+       - testAppDb
+    environment:
+       - DB_HOST=testappDb
+       - DB_NAME=UserTestApplicationDb
+       - DB_SA_PASSWORD=Passwrd123456
+    networks:
+       - userTestAppBack

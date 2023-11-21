@@ -6,9 +6,11 @@ using DAL.Interfaces;
 using DAL.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using System;
 using System.Text;
 
 namespace TestApplicationServer
@@ -19,9 +21,13 @@ namespace TestApplicationServer
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            var dbHost = Environment.GetEnvironmentVariable("DB_HOST");
+            var dbName = Environment.GetEnvironmentVariable("DB_NAME");
+            var dbPassword = Environment.GetEnvironmentVariable("DB_SA_PASSWORD");
+            var connectionString = $"Data Source={dbHost}; Initial Catalog={dbName}; User ID=sa; Password={dbPassword}; Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
-                     builder.Configuration.GetConnectionString("DefaultConnection"),
+                     connectionString,
                         b => b.MigrationsAssembly("TestApplicationServer")
                         ));
 
