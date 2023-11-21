@@ -1,0 +1,22 @@
+FROM mcr.microsoft.com/dotnet/sdk:6.0-focal AS build
+WORKDIR /source
+COPY . .
+RUN dotnet restore "./Core/Core.csproj"  --disable-parallel
+RUN dotnet restore "./DAL/DAL.csproj"  --disable-parallel
+RUN dotnet restore "./BLL/Bll.csproj"  --disable-parallel
+RUN dotnet restore "./TestApplicationServer/TestApplicationServer.csproj"  --disable-parallel
+RUN dotnet publsh "./Core/Core.csproj"  -c release -o /core --no-restote
+RUN dotnet publsh "./DAL/DAL.csproj"  -c release -o /dal --no-restote 
+RUN dotnet publsh "./BLL/Bll.csproj"  -c release -o /bll --no-restote
+RUN dotnet publsh "./TestApplicationServer/TestApplicationServer.csproj"  -c release -o /app --no-restote
+
+FROM mcr.microsoft.com/dotnet/sdk:6.0-focal
+WORKDIR /app
+COPY --from=build /core ./core
+COPY --from=build /dal ./dal
+COPY --from=build /bll ./bll
+COPY --from=build /app ./app
+
+EXPOSE 5000
+
+ENTRYPOINT ["dotnet", "./app/TestApplicationServer.dll"]
