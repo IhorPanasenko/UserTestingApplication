@@ -26,7 +26,7 @@ COPY --from=build /bll ./bll
 COPY --from=build /app ./app
 
 # Expose port 5000
-EXPOSE 5000
+EXPOSE 7256
 
 # Set the entry point for the application
 ENTRYPOINT ["dotnet", "./app/TestApplicationServer.dll"]
