@@ -19,8 +19,13 @@ function PassTheTest() {
   const [isAuthorized, setIsAuthorized] = useState(false);
 
   const fetchData = async (appUserId) => {
+    const token = localStorage.getItem("token")
     try {
-      const response = await axios.get(`${GET_TEST_BY_ID_URL}${testId}&userId=${appUserId}`);
+      const response = await axios.get(`${GET_TEST_BY_ID_URL}${testId}&userId=${appUserId}`,{
+        headers:{
+            'Authorization': 'Bearer ' + token,
+        }
+    });
       setTestDetails(response.data);
     } catch (error) {
       console.error("Error fetching test details:", error);
@@ -134,7 +139,12 @@ function PassTheTest() {
     console.log(requestBody)
 
     try {
-      const response = await axios.put(PASS_THE_TEST_URL, requestBody);
+      const token = localStorage.getItem("token")
+      const response = await axios.put(PASS_THE_TEST_URL, requestBody, {
+        headers:{
+            'Authorization': 'Bearer ' + token,
+        }
+    });
       console.log("Test submitted successfully:", response.data);
       alert("All questions were submited");
       navigate("/UserTests");
