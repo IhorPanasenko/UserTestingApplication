@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  testapplicationserver:
+    image: ${DOCKER_REGISTRY-}testapplicationserver
+    build:
+      context: .
+      dockerfile: TestApplicationServer/Dockerfile
