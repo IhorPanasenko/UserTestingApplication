@@ -20,7 +20,6 @@ namespace TestApplicationServer.Controllers
         }
 
         [HttpGet("GetById")]
-        [Authorize]
         public async Task<IActionResult> GetById(int testId, string userId)
         {
             try

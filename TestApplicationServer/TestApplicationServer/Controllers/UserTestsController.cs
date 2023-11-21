@@ -42,7 +42,6 @@ namespace TestApplicationServer.Controllers
         }
 
         [HttpGet("GetUserTests")]
-        [Authorize]
         public async Task<IActionResult> GetUserTests(string userId)
         {
             try
@@ -80,7 +79,6 @@ namespace TestApplicationServer.Controllers
         }
 
         [HttpGet("GetCompletedTest")]
-        [Authorize]
         public async Task<IActionResult> GetCompletedTest(int userTestId)
         {
             try
@@ -123,7 +121,6 @@ namespace TestApplicationServer.Controllers
         }
 
         [HttpPut("PassTheTest")]
-        [Authorize]
         public async Task<IActionResult> PassTheTest(PassingUserTestViewModel passingUserTest)
         {
             var userTest = map(passingUserTest);
