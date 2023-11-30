@@ -127,6 +127,7 @@ namespace TestApplicationServer
             app.UseHttpsRedirection();
             app.UseCors("AllowReactApp");
             app.UseCors("AllowAllHeaders");
+            app.UseAuthentication();
             app.UseAuthorization();
             app.MapControllers();
            
